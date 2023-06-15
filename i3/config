@@ -13,11 +13,11 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-#font pango: Font Awesome 6 Free 
+#font pango: siji
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango: Font awesome 5 Free 
+# font pango: Font awesome 5 Free 
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
@@ -30,7 +30,7 @@ exec --no-startup-id dex --autostart --environment i3
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
-# NetworkManager is the most popular way to manage wireless networks on Linux,
+# NetworkMa/mnager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
@@ -250,8 +250,8 @@ default_border pixel 0
 
 
 # Set inner/outer gaps
-gaps inner 15 
-gaps outer 5
+gaps inner 20 
+gaps outer 0
 
 # Only enable gaps on a workspace when there is at least one container
   smart_gaps off
@@ -282,9 +282,9 @@ exec --no-startup-id "setxkbmap -option 'grp:alt_shift_toggle' -layout us,ara -v
 exec_always --no-startup-id picom
 exec --no-startup-id "optimus-manager --switch hybrid"
 exec --no-startup-id "nitrogen --restore"
-exec --no-startup-id "dunst"
-
-# Screen brightness controls
+exec --no-startup-id $bg-color         "dunst"
+                     $inactive-bg-color
+# Screen brightness c$inactive-bg-colorontrols
 bindsym $mod+F3 exec --no-startup-id brightnessctl set +20%  # increase screen brightness
 bindsym $mod+F2 exec --no-startup-id brightnessctl set 20%- # decrease screen brightness
 
@@ -292,11 +292,12 @@ bindsym $mod+F2 exec --no-startup-id brightnessctl set 20%- # decrease screen br
 bindsym $mod+g exec --no-startup-id google-chrome-stable
 bindsym $mod+Shift+f exec --no-startup-id dolphin
 
+bindsym $mod+Shift+Control+p exec --no-startup-id "shutdown now"
 # Setting mouse acceleration
   exec --no-startup-id xinput -set-prop 'SynPS/2 Synaptics TouchPad' 'libinput Accel Speed' 0.5
   exec --no-startup-id SynPS/2 Synaptics TouchPad VertScrollDelta=-111
   exec --no-startup-id xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Natural Scrolling Enabled" 1
-
+  
 
 
 
