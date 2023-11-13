@@ -254,7 +254,7 @@ gaps inner 20
 gaps outer 0
 
 # Only enable gaps on a workspace when there is at least one container
-  smart_gaps off
+  smart_gaps on
 
 # Hide edge borders only if there is one window with no gaps
 hide_edge_borders smart_no_gaps
@@ -274,30 +274,32 @@ bindsym $mod+Control+e exec --no-startup-id xrandr --output eDP-1 --primary
 exec_always --no-startup-id "~/.config/polybar/launch.sh"
 
 # Keyboard Layouts
-#exec --no-startup-id  "~/.config/set-multilingual-keyboard.sh"
+exec --no-startup-id  "~/.config/set-multilingual-keyboard.sh"
 
 #startup programs
-exec --no-startup-id "setxkbmap -option 'grp:alt_shift_toggle' -layout us,ara -variant ,qwerty"
+exec_always --no-startup-id "setxkbmap -option 'grp:alt_shift_toggle' -layout us,ara -variant ,qwerty"
 #other exec
 exec_always --no-startup-id picom
 exec --no-startup-id "optimus-manager --switch hybrid"
 exec --no-startup-id "nitrogen --restore"
 exec --no-startup-id $bg-color         "dunst"
-                     $inactive-bg-color
+exec --no-startup-id "source /opt/poky/3.1.27/environment-setup-cortexa8hf-neon-poky-linux-gnueabi"
+exec_always --no-startup-id xfce4-power-manager
 # Screen brightness c$inactive-bg-colorontrols
 bindsym $mod+F3 exec --no-startup-id brightnessctl set +20%  # increase screen brightness
 bindsym $mod+F2 exec --no-startup-id brightnessctl set 20%- # decrease screen brightness
 
 #extra bindes
-bindsym $mod+g exec --no-startup-id google-chrome-stable
+bindsym $mod+g exec --no-startup-id brave
 bindsym $mod+Shift+f exec --no-startup-id dolphin
 
 bindsym $mod+Shift+Control+p exec --no-startup-id "shutdown now"
+bindsym $mod+Shift+s exec  --no-startup-id "~/.config/set-multilingual-keyboard.sh"
 # Setting mouse acceleration
   exec --no-startup-id xinput -set-prop 'SynPS/2 Synaptics TouchPad' 'libinput Accel Speed' 0.5
   exec --no-startup-id SynPS/2 Synaptics TouchPad VertScrollDelta=-111
   exec --no-startup-id xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Natural Scrolling Enabled" 1
-  
+  exec_always --no-startup-id xfce4-power-manager
 
 
 
