@@ -8,38 +8,23 @@ require('packer').startup(function(use)
    use "neovim/nvim-lspconfig"
     use 'hrsh7th/nvim-compe'
     use 'github/copilot.vim'
-    use 'doums/darcula'
+--    use 'doums/darcula' 
+      use 'rebelot/kanagawa.nvim'
+      use 'xiyaowong/transparent.nvim'
     -- Additional plugins for C/C++
      use 'dense-analysis/ale'
     use 'preservim/tagbar'
+    use 'psliwka/vim-smoothie'
 end)
 
 --require("plugin_config.gruvbox")
 
 --theme
-vim.o.background = "dark" -- or "light" for light mode
-vim.cmd([[colorscheme darcula]])
-
---data types has no color I want fix 
-vim.cmd([[highlight link TSKeyword Function]])
-vim.cmd([[highlight link TSKeywordFunction Function]])
-vim.cmd([[highlight link TSKeywordOperator Function]])
-vim.cmd([[highlight link TSKeywordReturn Function]])
-vim.cmd([[highlight link TSKeywordRepeat Function]])
-vim.cmd([[highlight link TSKeywordCase Function]])
-vim.cmd([[highlight link TSKeywordConstant Function]])
-vim.cmd([[highlight link TSKeywordLabel Function]])
-
-    
-    
-    
-    
-    
-    
-    
-
-
-
+vim.background = "dark" -- or "light" for light mode
+ vim.cmd("colorscheme kanagawa")
+   
+     
+      
 
 
 
@@ -70,7 +55,7 @@ require("nvim-tree").setup({
   },
 })
 vim.keymap.set('n','<c-n>', ':NvimTreeFindFileToggle<CR>')
-
+-- vim.keymap.set('n','<c-N>', ':NvimTreeFindFileFocus<CR>')
 
 vim.opt.clipboard = 'unnamedplus'
 
@@ -90,13 +75,13 @@ require'nvim-treesitter.configs'.setup {
 require('lspconfig').clangd.setup{}
 
 --remove this if you want to see the diagnostics (errors and warnings) in your code
-vim.diagnostic.config({ 
-  underline = false,
-  virtual_text = false,
-  signs = false,
-  update_in_insert = false,
+--vim.diagnostic.config({ 
+ -- underline = false,
+ -- virtual_text = false,
+ -- signs = false,
+ -- update_in_insert = false,
 
-})
+--})
 
 
 require('lspconfig').pyright.setup{}
@@ -105,10 +90,12 @@ require('lspconfig').pyright.setup{}
 require'compe'.setup {
   enabled = true,
   autocomplete = true,
+  min_length = 1,
+
   source = {
     path = true,
-    buffer = true,
     nvim_lsp = true,
+    buffer = true,
   },
 }
 
@@ -121,6 +108,7 @@ vim.api.nvim_command 'let g:tagbar_type_cpp = { "kinds": [ "m:members", "c:class
 
 vim.api.nvim_command 'let g:ale_linters = { "python": ["pylint"] }'
 
-vim.api.nvim_command 'let g:ale_enabled = 0 '
+vim.api.nvim_command 'let g:ale_enabled = 1 '
 
 
+vim.api.nvim_command 'set number'

@@ -84,15 +84,15 @@ _G.packer_plugins = {
     path = "/home/kareem/.local/share/nvim/site/pack/packer/start/copilot.vim",
     url = "https://github.com/github/copilot.vim"
   },
-  darcula = {
-    loaded = true,
-    path = "/home/kareem/.local/share/nvim/site/pack/packer/start/darcula",
-    url = "https://github.com/doums/darcula"
-  },
   ["gruvbox.nvim"] = {
     loaded = true,
     path = "/home/kareem/.local/share/nvim/site/pack/packer/start/gruvbox.nvim",
     url = "https://github.com/ellisonleao/gruvbox.nvim"
+  },
+  ["kanagawa.nvim"] = {
+    loaded = true,
+    path = "/home/kareem/.local/share/nvim/site/pack/packer/start/kanagawa.nvim",
+    url = "https://github.com/rebelot/kanagawa.nvim"
   },
   ["nvim-compe"] = {
     loaded = true,
@@ -128,6 +128,16 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/kareem/.local/share/nvim/site/pack/packer/start/tagbar",
     url = "https://github.com/preservim/tagbar"
+  },
+  ["transparent.nvim"] = {
+    loaded = true,
+    path = "/home/kareem/.local/share/nvim/site/pack/packer/start/transparent.nvim",
+    url = "https://github.com/xiyaowong/transparent.nvim"
+  },
+  ["vim-smoothie"] = {
+    loaded = true,
+    path = "/home/kareem/.local/share/nvim/site/pack/packer/start/vim-smoothie",
+    url = "https://github.com/psliwka/vim-smoothie"
   }
 }
 
