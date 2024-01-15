@@ -1,5 +1,6 @@
 
 require('packer').startup(function(use)
+
    use 'wbthomason/packer.nvim'
    use  "ellisonleao/gruvbox.nvim" 
    use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
@@ -15,7 +16,8 @@ require('packer').startup(function(use)
      use 'dense-analysis/ale'
     use 'preservim/tagbar'
     use 'psliwka/vim-smoothie'
-end)
+    end)
+
 
 --require("plugin_config.gruvbox")
 
@@ -56,6 +58,9 @@ require("nvim-tree").setup({
 })
 vim.keymap.set('n','<c-n>', ':NvimTreeFindFileToggle<CR>')
 -- vim.keymap.set('n','<c-N>', ':NvimTreeFindFileFocus<CR>')
+
+-- Set g:nvim_tree_auto_cd to 1
+vim.g.nvim_tree_auto_cd = 1
 
 vim.opt.clipboard = 'unnamedplus'
 
