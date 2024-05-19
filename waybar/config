@@ -1,24 +1,20 @@
 {
-    "layer": "top", // Waybar at top layer
-    // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 24, // Waybar height (to be removed for auto height)
-    // "width": 1280, // Waybar width
-    "spacing": 4, // Gaps between modules (4px)
-    // Choose the order of the modules
-//["hyprland/window"]
-    "modules-left": ["hyprland/workspaces", "hyprland/mode", "hyprland/scratchpad", "custom/media"],
-    "modules-center": ["cpu", "memory", "temperature"],
-    "modules-right": ["backlight", "keyboard-state", "hyprland/language", "battery", "battery#bat2",  "network", "pulseaudio", "clock", "tray"],
-    // Modules configuration
+    "modules-left": ["hyprland/workspaces", "hyprland/mode"],
+    "modules-center": ["cpu","memory","temperature"],
+    "modules-right": ["backlight","keyboard-state","hyprland/language","pulseaudio","battery","clock","tray"],
+
+    "hyprland/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
      "hyprland/workspaces": {
 
          "disable-scroll": false,
-         "all-outputs": true,
+         "all-outputs": false,
          "warp-on-scroll": false,
          "format": "{icon}",
          "format-icons": {
              "1": "",
-             "2": "",
+             "2": " ",
              "3": "",
 	     "4": "4", 
 	     "5": "5",
@@ -33,64 +29,26 @@
              "default": ""
          }
      },
-    "keyboard-state": {
-        "numlock": true,
-        "capslock": true,
-        "format": "{name} {icon}",
-        "format-icons": {
-            "locked": "",
-            "unlocked": ""
-        }
-    },
-    "hyprland/mode": {
-        "format": "<span style=\"italic\">{}</span>"
-    },
-    "hyprland/scratchpad": {
-        "format": "{icon} {count}",
-        "show-empty": false,
-        "format-icons": ["", ""],
-        "tooltip": true,
-        "tooltip-format": "{app}: {title}"
-    },
-    "mpd": {
-        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
-        "format-disconnected": "Disconnected ",
-        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
-        "unknown-tag": "N/A",
-        "interval": 2,
-        "consume-icons": {
-            "on": " "
-        },
-        "random-icons": {
-            "off": "<span color=\"#f53c3c\"></span> ",
-            "on": " "
-        },
-        "repeat-icons": {
-            "on": " "
-        },
-        "single-icons": {
-            "on": "1 "
-        },
-        "state-icons": {
-            "paused": "",
-            "playing": ""
-        },
-        "tooltip-format": "MPD (connected)",
-        "tooltip-format-disconnected": "MPD (disconnected)"
+    "network": {
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-ethernet": "{ifname} ",
+        "format-disconnected": "", 
+        "max-length": 50,
+        "on-click": "kitty -e 'nmtui'"
     },
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
             "activated": "",
             "deactivated": ""
-        }
+        },
+		"on-click": "bash /home/dg/.local/bin/toggleRemote"
     },
     "tray": {
-        // "icon-size": 21,
+        "icon-size": 15,
         "spacing": 10
     },
     "clock": {
-        // "timezone": "America/New_York",
         "format": "{:%I:%M %p}",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "{:%Y-%m-%d}"
@@ -113,7 +71,7 @@
     "backlight": {
         // "device": "acpi_video1",
         "format": "{percent}% {icon}",
-        "format-icons": ["", "", "", "", "", "", "", "", ""]
+        "format-icons": ["  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  "]
     },
     "battery": {
         "states": {
@@ -134,7 +92,7 @@
     },
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-wifi": "{essid} ",
         "format-ethernet": "{ipaddr}/{cidr} ",
         "tooltip-format": "{ifname} via {gwaddr} ",
         "format-linked": "{ifname} (No IP) ",
@@ -142,17 +100,26 @@
         "format-alt": "{ifname}: {ipaddr}/{cidr}",
 	"on-click" : "nm-connection-editor"
     },
+
+    "keyboard-state": {
+        "numlock": true,
+        "capslock": true,
+        "format": "{name} {icon}",
+        "format-icons": {
+            "locked": "",
+            "unlocked": ""
+        }
+    },
     "pulseaudio": {
-        "scroll-step": 5, // %, can be a float
-        "format": "{volume}% {icon}",
-        "format-bluetooth": "{volume}% {icon} ",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": "󰝟",
+        "format": "{volume}% {icon} ",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon}    {format_source}",
+        "format-muted": "0% {icon} ",
         "format-source": "{volume}% ",
         "format-source-muted": "",
         "format-icons": {
             "headphone": "",
-            "hands-free": "",
+            "hands-free": "",
             "headset": "",
             "phone": "",
             "portable": "",
@@ -160,18 +127,5 @@
             "default": ["", "", ""]
         },
         "on-click": "pavucontrol"
-    },
-    "custom/media": {
-        "format": "{icon} {}",
-        "return-type": "json",
-        "max-length": 40,
-        "format-icons": {
-            "spotify": "",
-            "default": "🎜"
-        },
-        "escape": true,
-        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
     }
 }
-
